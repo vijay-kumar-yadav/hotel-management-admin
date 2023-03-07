@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/navigation/Header";
+import Bookings from "./components/routes/Bookings";
+import Rooms from "./components/routes/Rooms";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [bookings, setBookings] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route
+          path="/"
+          element={<Rooms bookings={bookings} setBookings={setBookings} />}
+        ></Route>
+        <Route
+          path="/Bookings"
+          element={<Bookings bookings={bookings} setBookings={setBookings} />}
+        ></Route>
+      </Routes>
+    </>
   );
-}
+};
 
 export default App;
